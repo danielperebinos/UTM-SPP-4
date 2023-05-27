@@ -1,0 +1,68 @@
+{% include 'header.html' %}
+
+<!-- Page Content -->
+    <div class="page-heading products-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>despre noi</h4>
+              <h2>compania noastră</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="page-heading header-text best-features about-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>{{ object.title }}</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img src="{{ object.main_image.url }}" alt="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <h4>Descriere</h4>
+              <p>{{ object.description }}</p>
+              <ul class="social-icons">
+                <li>Nr de contact: </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-12">
+            <div class="section-heading">
+              <h3>Galerie</h3>
+            </div>
+          </div>
+            <div class="owl-carousel">
+            {% for image in images %}
+                <img src="{{ image.file.url }}" alt="" class="product_carousel">
+            {% endfor %}
+            </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+    $(document).ready(function(){
+      $(".owl-carousel").owlCarousel({
+          animateOut: 'slideOutDown',
+          animateIn: 'flipInX',
+          margin: 30,
+          autoplay: true,
+          loop:true,
+          items: 3,
+      });
+    });
+</script>
+
+{% include 'footer.html' %}

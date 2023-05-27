@@ -1,0 +1,77 @@
+{% load static %}
+
+{% include 'header.html' %}
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+      <div class="owl-banner owl-carousel">
+        <div class="banner-item-01">
+          <div class="text-content">
+            <h4>Cele mai bune oferte</h4>
+            <h2>Oferte și produse noi în curând</h2>
+          </div>
+        </div>
+        <div class="banner-item-02">
+          <div class="text-content">
+            <h4>Super rapid</h4>
+            <h2>Procură cele mai calitative produse</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Cele mai noi produse</h2>
+              <a href="{% url 'products' %}">vezi toate produsele <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+          {% if products %}
+              {% for product in products  %}
+                  <div class="col-md-4">
+                    <div class="product-item">
+                      <a href="#"><img src="{{ product.main_image.url }}" alt=""></a>
+                      <div class="down-content">
+                        <a href="#"><h4>{{ product.title }}</h4></a>
+                        <h6>{% if product.price %} {{ product.price }} mdl {% else %} negotiable {% endif %}</h6>
+                        <p>{{ product.description }}</p>
+                      </div>
+                    </div>
+                  </div>
+              {% endfor %}
+          {% else %}
+          <h4 style="margin: 0 auto;">Soon...</h4>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="best-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Despre Exotic Plants</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <h4>Căutați cele mai bune produse?</h4>
+              <p>Compania Exotic planta se ocupa cu producerea  materialului săditor de calitate este o condiție importantă pentru dezvoltarea sectorului de pomusoare din Moldova. Iată de ce, este necesar să dezvoltăm parteneriate între laboratoarele care produc plante mamă, pepiniere care multiplică materialul săditor și producătorii de fructe. Avantajele producerii materialului săditor de calitate în Moldova sunt evidente: randamentul de prindere și creștere a materialului săditor datorită aclimatizării, calitatea materialului săditor devituzat, preț competitiv urmare reducerii costurilor de transport. <a rel="nofollow" href="{% url 'contacts' %}">Contactați-ne </a> pentru mai multe detalii.</p>
+              <a href="{% url 'about' %}" class="filled-button">Citește mai detaliat</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img src="{% static 'assets/images/plant.jpg' %}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% include 'footer.html' %}
