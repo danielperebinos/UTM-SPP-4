@@ -14,12 +14,16 @@ SECRET_KEY = 'django-insecure-6%deirsgxe$+$g1l9j=n%3&o84na*r3v@2xxc*yzurtzl6c7(k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # Admin
+    'jazzmin',
+
+    # Django required
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -27,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Custom
     'apps.products'
 ]
 

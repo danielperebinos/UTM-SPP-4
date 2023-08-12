@@ -6,8 +6,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="text-content">
-              <h4>despre noi</h4>
-              <h2>compania noastră</h2>
+              <h2>Vizualizarea produsului</h2>
             </div>
           </div>
         </div>
@@ -31,8 +30,9 @@
             <div class="left-content">
               <h4>Descriere</h4>
               <p>{{ object.description }}</p>
-              <ul class="social-icons">
-                <li>Nr de contact: </li>
+              <ul class="social-icons align-content-between">
+                <li><p><b>Producator:</b> {{ object.producer.company }}</p></li><br>
+                <li><p><b>Nr de contact:</b> {{ object.producer.contact.phone }}</p></li>
               </ul>
             </div>
           </div>

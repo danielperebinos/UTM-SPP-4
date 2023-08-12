@@ -34,9 +34,9 @@
               {% for product in products  %}
                   <div class="col-md-4">
                     <div class="product-item">
-                      <a href="#"><img src="{{ product.main_image.url }}" alt=""></a>
+                      <a href="/product/{{ product.pk }}"><img src="{{ product.main_image.url }}" alt=""></a>
                       <div class="down-content">
-                        <a href="#"><h4>{{ product.title }}</h4></a>
+                        <a href="/product/{{ product.pk }}"><h4>{{ product.title }}</h4></a>
                         <h6>{% if product.price %} {{ product.price }} mdl {% else %} negotiable {% endif %}</h6>
                         <p>{{ product.description|slice:":150" }}...</p>
                       </div>
