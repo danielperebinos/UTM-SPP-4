@@ -8,7 +8,7 @@ class Product(models.Model):
     main_image = models.ImageField(null=True)
     price = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    producer = models.ForeignKey('Producer', on_delete=models.CASCADE)
+    producer = models.ForeignKey("Producer", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Produs"
@@ -21,7 +21,7 @@ class Product(models.Model):
 class ProductImage(models.Model):
     file = models.ImageField()
     enable = models.BooleanField(default=True)
-    product = models.ForeignKey('product', on_delete=models.CASCADE)
+    product = models.ForeignKey("product", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Imaginea produsului"
@@ -30,7 +30,7 @@ class ProductImage(models.Model):
 
 class Producer(models.Model):
     company = models.CharField(max_length=250)
-    contact = models.ForeignKey('contacts', on_delete=models.CASCADE)
+    contact = models.ForeignKey("contacts", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Producator"
@@ -49,4 +49,4 @@ class Contacts(models.Model):
         verbose_name_plural = "Contacte"
 
     def __str__(self):
-        return f'Email: {self.email}; Phone: {self.phone}'
+        return f"Email: {self.email}; Phone: {self.phone}"

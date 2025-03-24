@@ -9,8 +9,8 @@ class HomeView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        context['products'] = Product.objects.all().order_by('-created_at')[:6]
-        context['active'] = 'home'
+        context["products"] = Product.objects.all().order_by("-created_at")[:6]
+        context["active"] = "home"
         return render(request, self.template_name, context=context)
 
 
@@ -22,7 +22,7 @@ class ProductsView(ListView):
 
     def get(self, request, *args, **kwargs):
         response = super().get(request, *args, **kwargs)
-        response.context_data['active'] = 'products'
+        response.context_data["active"] = "products"
         return response
 
 
@@ -33,16 +33,19 @@ class ProductDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         response = super().get(request, *args, **kwargs)
-        response.context_data['active'] = 'products'
-        response.context_data['images'] = response.context_data['object'].productimage_set.filter(enable=True)
+        response.context_data["active"] = "products"
+        response.context_data["images"] = response.context_data[
+            "object"
+        ].productimage_set.filter(enable=True)
         return response
+
 
 class AboutUsView(TemplateView):
     template_name = "products/about.html"
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        context['active'] = 'about'
+        context["active"] = "about"
         return render(request, self.template_name, context=context)
 
 
@@ -51,5 +54,5 @@ class ContactsView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        context['active'] = 'contacts'
+        context["active"] = "contacts"
         return render(request, self.template_name, context=context)

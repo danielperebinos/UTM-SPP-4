@@ -5,26 +5,29 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('products', '0002_product_created_at_product_price'),
+        ("products", "0002_product_created_at_product_price"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='producator',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='products.producer'),
+            model_name="product",
+            name="producator",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="products.producer",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='contacts',
-            name='email',
+            model_name="contacts",
+            name="email",
             field=models.EmailField(max_length=254, null=True),
         ),
         migrations.AlterField(
-            model_name='contacts',
-            name='phone',
+            model_name="contacts",
+            name="phone",
             field=models.CharField(max_length=12, null=True),
         ),
     ]

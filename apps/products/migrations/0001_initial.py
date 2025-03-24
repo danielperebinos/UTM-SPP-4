@@ -5,62 +5,104 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Contacts',
+            name="Contacts",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254)),
-                ('phone', models.CharField(max_length=12)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254)),
+                ("phone", models.CharField(max_length=12)),
             ],
             options={
-                'verbose_name': 'Contact',
-                'verbose_name_plural': 'Contacte',
+                "verbose_name": "Contact",
+                "verbose_name_plural": "Contacte",
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=250)),
-                ('description', models.TextField()),
-                ('enable', models.BooleanField(default=True)),
-                ('main_image', models.ImageField(null=True, upload_to='')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=250)),
+                ("description", models.TextField()),
+                ("enable", models.BooleanField(default=True)),
+                ("main_image", models.ImageField(null=True, upload_to="")),
             ],
             options={
-                'verbose_name': 'Produs',
-                'verbose_name_plural': 'Produse',
+                "verbose_name": "Produs",
+                "verbose_name_plural": "Produse",
             },
         ),
         migrations.CreateModel(
-            name='ProductImage',
+            name="ProductImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file', models.ImageField(upload_to='')),
-                ('enable', models.BooleanField(default=True)),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("file", models.ImageField(upload_to="")),
+                ("enable", models.BooleanField(default=True)),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="products.product",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Imaginea produsului',
-                'verbose_name_plural': 'Imaginile produsului',
+                "verbose_name": "Imaginea produsului",
+                "verbose_name_plural": "Imaginile produsului",
             },
         ),
         migrations.CreateModel(
-            name='Producer',
+            name="Producer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('company', models.CharField(max_length=250)),
-                ('contact', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.contacts')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("company", models.CharField(max_length=250)),
+                (
+                    "contact",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="products.contacts",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Producator',
-                'verbose_name_plural': 'Producatori',
+                "verbose_name": "Producator",
+                "verbose_name_plural": "Producatori",
             },
         ),
     ]
