@@ -1,3 +1,9 @@
+.env
+db.sqlite3
+static/admin
+static/assets
+static/jazzmin
+media
 /venv
 /.idea
 /templatemo_546_sixteen_clothing
