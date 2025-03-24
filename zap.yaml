@@ -1,0 +1,29 @@
+jobs:
+  - type: "spider"
+    parameters:
+      context: "Default Context"
+      url: "http://localhost:8000/"  # Înlocuiește cu URL-ul țintei tale
+      maxDuration: 5
+
+  - type: "activeScan"
+    parameters:
+      context: "Default Context"
+      policy: "Default Policy"
+      maxDuration: 10
+
+  - type: "report"
+    parameters:
+      template: "traditional-json"  # Poți folosi "traditional-html" sau "xml" dacă preferi
+      reportFile: "/zap/wrk/zap_report.json"  # Unde se va salva raportul în container
+      reportDir: "/zap/wrk/"  # Directorul unde să fie generat raportul
+
+env:
+  contexts:
+    - name: "Default Context"
+      urls:
+        - "http://localhost:8000/"
+
+  parameters:
+    failOnError: false  # Setează pe true dacă vrei să oprești execuția la erori
+
+  vars: { }
