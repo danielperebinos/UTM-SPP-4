@@ -5,6 +5,8 @@ services:
       context: ./
       dockerfile: deployment/docker/Dockerfile
     image: exotic-api
+    env_file:
+      - .env
     volumes:
       - ./db.sqlite3:/usr/app/db.sqlite3
       - ./static:/usr/app/static:ro
