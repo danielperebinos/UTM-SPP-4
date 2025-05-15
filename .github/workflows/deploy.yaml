@@ -27,6 +27,8 @@ jobs:
         run: ruff format .
 
   build:
+    needs: check
+    environment: Production
     name: 🐳 Build & Push Docker Image
     runs-on: ubuntu-latest
 
