@@ -56,22 +56,28 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    environment: Production
     needs: build
     env:
-      GCP_PROJECT: apcloudlab 🌍
-      GCP_ZONE: us-central1-c 📍
-      GCP_CLUSTER: apcloudlab ☁️
-      GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }} 🔐
+      GCP_PROJECT: apcloudlab
+      GCP_ZONE: us-central1-c
+      GCP_CLUSTER: apcloudlab
+      GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
     steps:
       - name: Checkout code ✅📥
         uses: actions/checkout@v3
 
-      - name: Set up gcloud CLI ☁️⚙️
-        uses: google-github-actions/setup-gcloud@v1
+      - name: Authenticate to Google Cloud 🔐☁️
+        uses: google-github-actions/auth@v1
         with:
-          service_account_key: ${{ env.GCP_SA_KEY }}
+          credentials_json: ${{ env.GCP_SA_KEY }}
+
+      - name: Set up gcloud CLI ☁️⚙️
+        uses: google-github-actions/setup-gcloud@v2
+        with:
           project_id: ${{ env.GCP_PROJECT }}
+          install_components: kubectl
 
       - name: Configure kubectl 🛠️🐳
         run: |
@@ -80,4 +86,3 @@ jobs:
       - name: Deploy Kubernetes manifests 🚀🔥🎉
         run: |
           kubectl apply -f ./deployment/kubernetes/
-
