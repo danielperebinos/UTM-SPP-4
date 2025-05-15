@@ -9,21 +9,21 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code ✅
         uses: actions/checkout@v3
 
-      - name: Install Python and ruff
+      - name: Install Python and ruff 🐍✨
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Install ruff
+      - name: Install ruff 🛠️
         run: pip install ruff
 
-      - name: Run ruff lint (check)
+      - name: Run ruff lint (check) 🔍
         run: ruff check .
 
-      - name: Run ruff format (fix)
+      - name: Run ruff format (fix) 🎨
         run: ruff format .
 
   build:
@@ -49,6 +49,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: deployment/docker/Dockerfile
           push: true
           tags: refjs/utmacdjango:latest
 
