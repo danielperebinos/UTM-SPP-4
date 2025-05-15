@@ -26,7 +26,6 @@ jobs:
       - name: Run ruff format (fix)
         run: ruff format .
 
-jobs:
   build:
     name: 🐳 Build & Push Docker Image
     runs-on: ubuntu-latest
