@@ -37,7 +37,7 @@ jobs:
 
       - name: Configure kubectl
         run: |
-          gcloud container clusters get-credentials your-cluster-name --zone your-cluster-zone --project your-gcp-project-id
+          gcloud container clusters get-credentials apcloudlab --zone us-central1-c --project apcloudlab
 
       - name: Deploy Kubernetes manifests
         run: |
