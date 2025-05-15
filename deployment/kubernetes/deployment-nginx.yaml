@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exotic-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exotic-nginx
+  template:
+    metadata:
+      labels:
+        app: exotic-nginx
+    spec:
+      containers:
+        - name: exotic-nginx
+          image: nginx:1.27.3-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+            - name: static-volume
+              mountPath: /usr/app/static
+            - name: media-volume
+              mountPath: /usr/app/media
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: exotic-nginx-conf
+        - name: static-volume
+          persistentVolumeClaim:
+            claimName: pvc-static
+        - name: media-volume
+          persistentVolumeClaim:
+            claimName: pvc-media
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: exotic-nginx-service
+spec:
+  selector:
+    app: exotic-nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

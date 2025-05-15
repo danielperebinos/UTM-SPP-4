@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exotic-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exotic-api
+  template:
+    metadata:
+      labels:
+        app: exotic-api
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: exotic-api
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+          image: refjs/utmacdjango
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: exotic-api-config
+          volumeMounts:
+            - name: static-volume
+              mountPath: /usr/app/static
+            - name: media-volume
+              mountPath: /usr/app/media
+      volumes:
+        - name: static-volume
+          persistentVolumeClaim:
+            claimName: pvc-static
+        - name: media-volume
+          persistentVolumeClaim:
+            claimName: pvc-media
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: exotic-api-service
+spec:
+  selector:
+    app: exotic-api
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

@@ -21,10 +21,10 @@ RUN pip install --upgrade pip setuptools wheel \
 FROM python:3.11-slim-bullseye AS base-app
 
 # Install utilities (ex: ffmpeg, coreutils)
-RUN --mount=type=cache,target=/var/lib/apt/lists apt-get update && apt-get install -y coreutils ffmpeg && apt-get clean
+RUN --mount=type=cache,target=/var/lib/apt/lists apt-get update && apt-get install -y coreutils && apt-get clean
 
 # Create a non-root app user
-RUN adduser --disabled-password --home /app --gecos "" app
+RUN adduser --uid 1000 --disabled-password --home /app --gecos "" app
 
 WORKDIR /usr/app
 
@@ -36,6 +36,7 @@ ENV PATH="/usr/app/.venv/bin:$PATH"
 
 # Copy the Django project files
 COPY ./apps /usr/app/apps
+COPY ./static /usr/app/static
 COPY ./config /usr/app/config
 COPY ./media /usr/app/media
 COPY ./templates /usr/app/templates

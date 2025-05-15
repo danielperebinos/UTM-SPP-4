@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: exotic-api-config
+data:
+  DEBUG: "True"
+  SECRET_KEY: "gbqasgk+#m+95$0aa#(yq_2yesh&#8n3=p-!r=q*)f6w6&#jau"
+  DATABASE_URL: "postgres://postgres:postgres@postgres-service:5432/exotic"
+

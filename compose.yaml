@@ -7,12 +7,16 @@ services:
     image: exotic-api
     env_file:
       - .env
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@exotic-postgres:5432/exotic
     volumes:
       - ./db.sqlite3:/usr/app/db.sqlite3
-      - ./static:/usr/app/static:ro
+      - ./static:/usr/app/static
       - ./media:/usr/app/media:ro
     expose:
       - "8000"
+    depends_on:
+      - exotic-postgres
 
   exotic-nginx:
     image: nginx:1.27.3-alpine
@@ -25,3 +29,18 @@ services:
       - "8090:80"
     depends_on:
       - exotic-api
+
+  exotic-postgres:
+    image: postgres:15-alpine
+    container_name: exotic-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: exotic
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
