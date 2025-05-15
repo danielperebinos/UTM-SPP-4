@@ -13,6 +13,12 @@ data:
       server_tokens off;
       add_header X-Content-Type-Options "nosniff" always;
 
+      location /health {
+          access_log off;
+          return 200 'OK';
+          add_header Content-Type text/plain;
+      }
+    
       location /static/ {
           alias /usr/app/static/;
           access_log off;

@@ -1,7 +1,14 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import View
 
 from apps.products.models import Product
+
+
+class HealthView(View):
+    def get(self, request, *args, **kwargs):
+        return JsonResponse({"status": "ok"}, status=200)
 
 
 class HomeView(TemplateView):
