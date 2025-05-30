@@ -32,29 +32,41 @@ spec:
                 name: exotic-api-config
 
           livenessProbe:
-            httpGet:
-              path: /api/health
-              port: 8000
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  curl -s http://localhost:8000/api/health | grep -q '"status": *"ok"'
             initialDelaySeconds: 10
             periodSeconds: 15
             timeoutSeconds: 5
             failureThreshold: 3
 
           readinessProbe:
-            httpGet:
-              path: /api/health
-              port: 8000
-            initialDelaySeconds: 15  # mai generos
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  curl -s http://localhost:8000/api/health | grep -q '"status": *"ok"'
+            initialDelaySeconds: 15
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 5
 
           startupProbe:
-            httpGet:
-              path: /api/health
-              port: 8000
-            failureThreshold: 30
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  curl -s http://localhost:8000/api/health | grep -q '"status": *"ok"'
+            initialDelaySeconds: 0
             periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 30
+
 
 
 
